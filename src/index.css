@@ -5,9 +5,247 @@ body {
     sans-serif;
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
+  position: relative;
+width: 100%;
+height: 100%;
+
+background: #DEEDED;
 }
 
 code {
   font-family: source-code-pro, Menlo, Monaco, Consolas, 'Courier New',
     monospace;
+}
+.rock {
+  background-color: rgb(148, 81, 81);
+}
+.ghost {
+  background-color: rgb(247, 247, 247);
+}
+.electric {
+  background-color: rgb(255, 255, 161);
+}
+.bug {
+  background-color: #F6D6A7;
+}
+.poison {
+  background-color: #e0a7f6;
+}
+.normal {
+  background-color: #F4F4F4;
+}
+.fairy {
+  background-color: rgba(255, 192, 203, 0.863);
+}
+.fire {
+  background-color: #FBE3DF;
+}
+.grass {
+  background-color:#E2F9E1;
+}
+.water {
+  background-color:#E0F1FD;
+}
+
+
+.app-container {
+width: 100%;
+background: #DEEDED; 
+display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  min-height: 100vh;
+  background-color: rgb(222,237,237);
+ margin: 0;
+ padding-right: 0.8rem;
+ padding-left: 0.8rem;
+ border:1px solid black;
+}
+
+.app-container-header{
+
+  width: 100%;
+  /* height: 95px;
+  left: 28px;
+   */
+   margin-top: 2.5rem;
+   margin-bottom: 1.5rem;
+  
+   
+  }
+  
+.app-container-header-title{
+
+  margin-bottom: 0.1rem;
+  font-family: 'Roboto';
+  font-style: normal;
+  font-weight: 700;
+  font-size: 30px;
+  line-height: 35px;
+  letter-spacing: 0.06em;
+  
+  color: #2E3156;
+}
+.app-container-header-subtitle{
+width: 100%;
+height: 1rem;
+margin: 0.1rem;
+color: #5D5F7E;
+
+font-family: 'Roboto';
+font-style: normal;
+font-weight: 500;
+font-size: 16px;
+line-height: 19px;
+
+  }
+  .app-container-header-line{
+  
+    margin-bottom: 0.1rem;
+    /* //width: 100%;
+    //border: 1px solid #5D5F7E; */
+    
+    }
+.pokemon-container {
+
+  width: 100%;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+margin-top: 1rem;
+
+}
+.filter-icon{
+  object-fit: fill;
+  width: 3rem;
+  height: 3rem;
+}
+.all-container {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  justify-content: center;
+}
+.thumb-container {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  padding: 1.5rem 0 ;
+  margin: 0.6rem;
+  border: 0.2rem dashed grey;
+  border-radius: 0.5rem;
+  min-width: 150px;
+  min-height:160px;
+  text-align: center;
+  box-shadow: 0 3px 15px rgba(0, 0, 0, 0.089);
+  
+}
+h3 {
+  margin-bottom: 0.rem;
+
+ 
+}
+
+.thumb-container .number {
+  padding: 0.2rem 0.4rem;
+
+}
+.thumb-container img {
+  width: 120px;
+  height: 120px;
+}
+.thumb-container small {
+  text-transform: capitalize;
+}
+.detail-wrapper {
+  display: flex;
+  flex-direction: column;
+  width: 100%;
+}
+.detail-wrapper button {
+  color: rgb(22, 22, 22);
+  padding: .5rem;
+  margin-top: 1rem;
+  border: none;
+  border-radius: 0.2rem;
+  cursor: pointer;
+  background-color: rgba(0, 0, 0, 0.185);
+}
+.load-more {
+  background: #f5f5f5 linear-gradient(#f5f5f5,#f1f1f1) repeat-x;
+  border-radius: 2px;
+  border: 1px solid #c6c6c6;
+  color: #444;
+  padding: 0.5rem 1.5rem;
+  min-width: 50%;
+  margin-top: 1rem;
+}
+.app-container-filtering{
+  display: flex;
+
+  justify-content: space-around;
+  width:100%;
+  height: 2.5rem;
+}
+
+.app-container-filtering-filtericon{
+  /* background: #2E3156;
+border-radius: 8px;
+height: 100%; */
+
+}
+.app-container-filtering-input{
+ 
+  width:75%;
+
+  background: #C9DDE2;
+  border-radius: 8px;
+  border: none;
+ height: 100%;
+}
+
+@media screen and (min-width: 1200px) {
+  .app-container{
+    
+  }
+  .app-container-header{
+display: flex;
+flex-direction: row;
+    width: 100%;
+    /* height: 95px;
+    left: 28px;
+     */
+     margin-top: 2.5rem;
+     margin-bottom: 1.5rem;
+    
+     
+    } 
+    .app-container-header-line{
+  
+      margin-bottom: 0.1rem;
+      width: 10%;
+      border-right: 1px solid #5D5F7E;
+      
+      }
+
+      .app-container-header-title{
+        margin-top: 0px;
+        align-self: center;
+      }
+   
+      .app-container-header{
+        padding-left: 15%;
+      }
+
+      .app-container-filtering{
+        padding-left: 15%;
+      }
+      .app-container-header-subtitle{
+        margin-left: 1rem;
+        align-self: center;
+      }
+
 }

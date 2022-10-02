@@ -1,0 +1,24 @@
+.MuiAccordionSummary-root{
+    
+    border-radius: 0.5rem;
+}
+/* .MuiAccordion-rounded{
+    border-radius: 0.5rem;
+}'
+.MuiAccordionSummary-content{
+    display: flex;
+    justify-content: space-between;
+} */
+.MuiButtonBase-root, .MuiButton-root{
+    /* margin:1rem; */
+    color: none;
+    border: none;
+    padding: none;
+    background-color: none !important;
+ 
+    transition:none ;
+}
+.MuiButtonBase-root .MuiButton-root .MuiButton-text{
+    padding-top:0;
+   
+} 

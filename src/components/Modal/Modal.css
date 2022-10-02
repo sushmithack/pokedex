@@ -1,0 +1,7 @@
+
+.MuiDialog-paperWidthSm {
+    min-width: 90%;
+    min-height: 100%;
+    margin:10%;
+    box-sizing: border-box;
+}
