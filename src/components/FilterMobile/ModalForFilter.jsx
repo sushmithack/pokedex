@@ -9,14 +9,8 @@ import "./Modal.css";
 import CheckBox from "../checkbox/CheckBox";
 import AccordionComponent from "../accordion/AccordionComponent";
 import TuneIcon from '@material-ui/icons/Tune';
-// import CloseIcon from "@material-ui/icons/Close";
-// import filterIcon from "../icons/filterIcon";
-//pokedex\src\icons\filterIcon.png
 import Typography from "@material-ui/core/Typography";
-import Button from "@material-ui/core/Button";
 import Grid from "@material-ui/core/Grid";
-// import HighlightOffIcon from "@mui/icons-material/HighlightOff";
-import FilterByType from "../FilterDesktop/FilterByType";
 const useStyles = makeStyles((theme) => {
   const appbarHeight = 100;
   return {
@@ -30,7 +24,6 @@ export default function ModalForFilter() {
   return (
     <div>
       <TuneIcon className="filter-icon" onClick={() => setOpen(true)}>
-        {/* <img className="filter-icon" src="icons/filterIcon.png"></img> */}
 
       </TuneIcon>
       <Dialog
@@ -42,7 +35,6 @@ export default function ModalForFilter() {
           <Grid container justifyContent="space-between" alignItems="center">
             <Typography variant="h5">Filter</Typography>
             <IconButton onClick={() => setOpen(false)}>
-              {/* <HighlightOffIcon /> */}
             </IconButton>
           </Grid>
         </DialogTitle>

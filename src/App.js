@@ -33,7 +33,6 @@ function App() {
   let timer;
 
   const allPokemonTypes = [
-    "all types",
     "grass",
     "bug",
     "dark",
@@ -53,8 +52,12 @@ function App() {
     "steel",
     "water",
   ];
+  const allGenderTypes = [
+    {type:"Male",code:'1'},
+    {type:"Female",code:'2'},
+    {type:"Genderless",code:'3'}
+  ];
   const [isDesktop, setDesktop] = useState(window.innerWidth > 1024);
-  const [selectedFilter, setSelectedFilter] = useState([]);
   const updateMedia = () => {
     setDesktop(window.innerWidth > 1200);
   };
@@ -67,6 +70,10 @@ function App() {
   const [filteredPokemonList, setFilteredPokemonList] = useState([]);
   const [openPokemonDetails, setOpenPokemonDetails] = useState(false);
   const [openedPokemonCardDetails, setOpenedPokemonCardDetails] = useState({});
+
+  const [selectedPokemonTypes,setSelectedPokemonTypes] = useState([])
+  const [selectedGender,setSelectedGender] = useState(0)
+
   const countRef = useRef(0);
   const performAPICall = async () => {
     let response = {};
@@ -142,12 +149,18 @@ function App() {
       onTypesSelect(e, type);
     });
   }
-  function onTypesSelect(e, type) {
+  function onTypesSelect(types) {
+
+    if(!types || types.length === 0 ) {
+      setFilteredPokemonList(pokemonList);
+      return;
+    }
+
     let filterArr = [];
 
     for (let i = 0; i < pokemonList.length; i++) {
       for (let j = 0; j < pokemonList[i].types.length; j++) {
-        if (type === pokemonList[i].types[j].type.name) {
+        if (types.includes(pokemonList[i].types[j].type.name)) {
           filterArr.push(pokemonList[i]);
         }
       }
@@ -155,6 +168,52 @@ function App() {
 
     setFilteredPokemonList(filterArr);
   }
+
+  function getPokemonDetailsGender(results) {
+    let finalRes = [];
+    results.forEach(async (pokemon) => {
+      const res = await fetch(
+        `${appUrls.baseUrl}${appUrls.pokemon}/${pokemon.pokemon_species.name}`
+      );
+      const data = await res.json();
+
+      setPokemonList((currentList) => [...currentList, data]);
+    });
+
+    setPokemonList(finalRes);
+
+    pokemonList.sort((a, b) => a.id - b.id);
+  }
+  const performFetchByGender = async (id) => {
+    let response = [];
+    let errored = false;
+    try {
+      response = await (
+        await fetch(`https://pokeapi.co/api/v2/gender/${id}`)
+      ).json();
+    } catch (e) {
+      errored = true;
+    }
+
+    return response.pokemon_species_details.slice(0, 20);
+  }
+
+ const onFilterByGender = async (id) =>{
+    const result = await performFetchByGender(id);
+    console.log(result);
+    getPokemonDetailsGender(result);
+    setFilteredPokemonList(pokemonList);
+  }
+
+
+  useEffect(()=> {
+    onTypesSelect(selectedPokemonTypes)
+  },[selectedPokemonTypes])
+
+  useEffect(()=> {
+    if(selectedGender !== 0) onFilterByGender(selectedGender)
+    else setFilteredPokemonList(pokemonList);
+  },[selectedGender])
 
   function onCardClick(e, pokemonStats) {
     console.log(pokemonStats);
@@ -165,6 +224,10 @@ function App() {
   return (
     <appContext.Provider
       value={{
+        allGenderTypes,
+        isDesktop,
+        selectedGender,
+        setSelectedGender,
         allPokemonTypes,
         filterOptionTypes,
         onTypesSelect,
@@ -174,6 +237,8 @@ function App() {
         openPokemonDetails,
         setOpenPokemonDetails,
         onMultipleTypeSelection,
+        setSelectedPokemonTypes,
+        selectedPokemonTypes
       }}
     >
       <Box
@@ -189,7 +254,7 @@ function App() {
           flexDirection="column"
           alignItems="stretch"
           paddingTop={5}
-          paddingLeft={3}
+          paddingLeft={isDesktop ? 6 : 3}
           paddingRight={3}
           paddingBottom={3}
         >
@@ -209,7 +274,7 @@ function App() {
         </Box>
         <Box
           display="flex"
-          paddingLeft={3}
+          paddingLeft={isDesktop ? 6 : 3}
           paddingRight={3}
           paddingTop={2}
           flexDirection="row"
@@ -221,7 +286,7 @@ function App() {
             paddingRight={3}
             flexDirection="column"
             alignItems="stretch"
-            style={{ color: "#2e3156", width: "98%" }}
+            style={{ color: "#2e3156", width: "70%" }}
           >
             <Typography variant="subtitle1" className="searchByText">
               Search By
