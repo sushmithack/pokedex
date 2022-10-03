@@ -5,6 +5,7 @@ import DialogContent from "@material-ui/core/DialogContent";
 import DialogContentText from "@material-ui/core/DialogContentText";
 import IconButton from "@material-ui/core/IconButton";
 import { makeStyles } from "@material-ui/core/styles";
+import TuneIcon from '@material-ui/icons/Tune';
 import "./Modal.css";
 import AccordionComponent from "../accordion/AccordionComponent";
 // import CloseIcon from "@material-ui/icons/Close";
@@ -27,9 +28,10 @@ export default function ModalForFilter() {
 
   return (
     <div>
-      <Button onClick={() => setOpen(true)}>
-        <img className="filter-icon" src="icons/filterIcon.png"></img>
-      </Button>
+      <TuneIcon className="filter-icon" onClick={() => setOpen(true)}>
+        {/* <img className="filter-icon" src="icons/filterIcon.png"></img> */}
+
+      </TuneIcon>
       <Dialog
         className={classes.root}
         open={open}

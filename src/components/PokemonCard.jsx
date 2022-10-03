@@ -41,11 +41,11 @@ const PokemonCard = ({
     >
       <img src={image} alt={name} />
       <div className="detail-wrapper">
-        <h3>{name}</h3>
+        <h3 style={{color:'#2e3156'}}>{name}</h3>
         {/* <small>Type: {type}</small> */}
       </div>
       <div className="number">
-        <small>{idValue}</small>
+        <small style={{color:'#2e3156'}}>{idValue}</small>
       </div>
     </div>
   );
