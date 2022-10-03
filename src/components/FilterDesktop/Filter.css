@@ -2,7 +2,14 @@
 @media screen and (min-width: 1200px) {
     .filter-on-largescreen{
         display: flex !important ;
-        background: #C9DDE2;       
         justify-content: space-between;
+        width:60% !important
+    }
+    .filterHeaderText{
+        font-size: 1rem !important;
+        color:#2e3156;
+        letter-spacing: 1px;
+        margin-top: 1rem !important;
+        line-height: 1rem !important;
     }
 }

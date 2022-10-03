@@ -30,6 +30,7 @@ export default function ModalForFilter() {
   return (
     <div>
       <TuneIcon className="filter-icon" onClick={() => setOpen(true)}>
+        {/* <img className="filter-icon" src="icons/filterIcon.png"></img> */}
 
       </TuneIcon>
       <Dialog
