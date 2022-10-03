@@ -3,6 +3,10 @@ import ModalForFiltering from "./components/FilterMobile/ModalForFilter";
 import React, { useRef, useEffect, useState } from "react";
 import Filter from "./components/FilterDesktop/Filter";
 import Pokemondetails from "./components/FilterMobile/Pokemondetails";
+import Box from "@material-ui/core/Box";
+import { appUrls } from "./constants/config";
+import Typography from "@material-ui/core/Typography";
+import TextField from "@material-ui/core/TextField";
 
 export const appContext = React.createContext();
 //lazy loading, error handling
@@ -67,7 +71,9 @@ function App() {
     let response = {};
     let errored = false;
     try {
-      response = await (await fetch(`${config.endpoint}`)).json();
+      response = await (
+        await fetch(`${appUrls.baseUrl}${appUrls.pokemon}`)
+      ).json();
     } catch (e) {
       errored = true;
     }
@@ -76,7 +82,9 @@ function App() {
 
   function getEachIndividualPokemon(results) {
     results.forEach(async (pokemon) => {
-      const res = await fetch(`${config.endpoint}/${pokemon.name}`);
+      const res = await fetch(
+        `${appUrls.baseUrl}${appUrls.pokemon}/${pokemon.name}`
+      );
       const data = await res.json();
 
       setPokemonList((currentList) => [...currentList, data]);
@@ -166,76 +174,107 @@ function App() {
         onMultipleTypeSelection,
       }}
     >
-      <div className="app-container">
-        <div className="app-container-header">
-          <h1 className="app-container-header-title">Pokédex</h1>
-          <div className="app-container-header-line"></div>
-          <h4 className="app-container-header-subtitle">
+      <Box
+        className="app-container"
+        display="flex"
+        flexDirection="column"
+        alignItems="stretch"
+        justifyContent="space-between"
+        padding={1}
+      >
+        <Box
+          display="flex"
+          flexDirection="column"
+          alignItems="stretch"
+          paddingTop={5}
+          paddingLeft={3}
+          paddingRight={3}
+          paddingBottom={3}
+        >
+          <Box
+            display="flex"
+            flexDirection="column"
+            alignItems="stretch"
+            className="pokedexTitle-box"
+          >
+            <Typography variant="h5" className="pokedexTitle">
+              Pokédex
+            </Typography>
+          </Box>
+          <Typography variant="subtitle1" className="pokedexSubtext">
             Search for any pokemon that exists on the planet
-          </h4>
-        </div>
-        <div className="app-container-findby">
-          <div className="app-container-findby-searching">
-            <input
-              placeholder="Name or Number"
-              className="app-container-findby-searching-input"
-              type="text"
-              onChange={(e) => handleChange(e)}
-            />
+          </Typography>
+        </Box>
+        <Box
+          display="flex"
+          paddingLeft={3}
+          paddingRight={3}
+          paddingTop={2}
+          flexDirection="row"
+          alignItems="stretch"
+          justifyContent="space-between"
+        >
+          <TextField
+            onChange={(e) => handleChange(e)}
+            style={{ color: "#2e3156" }}
+            id="outlined-basic"
+            label="Name or Number"
+            variant="outlined"
+          />
+          {isDesktop ? (
+            <Filter></Filter>
+          ) : (
+            <ModalForFiltering></ModalForFiltering>
+          )}
+        </Box>
+
+        <Box display="flex" flexDirection="row" alignItems="stretch">
+          <div className="pokemon-container">
+            <div className="all-container">
+              <>
+                {filteredPokemonList.length !== 0
+                  ? filteredPokemonList.map((pokemonStats, index) => (
+                      <PokemonCard
+                        pokemonStats={pokemonStats}
+                        onCardClick={onCardClick}
+                        key={pokemonStats.name}
+                        id={pokemonStats.id}
+                        disableClick={false}
+                        image={
+                          pokemonStats.sprites.other.dream_world.front_default
+                        }
+                        name={pokemonStats.name}
+                        types={pokemonStats.types}
+                        type={pokemonStats.types[0].type.name}
+                      />
+                    ))
+                  : pokemonList.map((pokemonStats, index) => (
+                      <PokemonCard
+                        pokemonStats={pokemonStats}
+                        onCardClick={onCardClick}
+                        disableClick={false}
+                        key={pokemonStats.name}
+                        id={pokemonStats.id}
+                        image={
+                          pokemonStats.sprites.other.dream_world.front_default
+                        }
+                        name={pokemonStats.name}
+                        types={pokemonStats.types}
+                        type={pokemonStats.types[0].type.name}
+                      />
+                    ))}
+                {openPokemonDetails && openedPokemonCardDetails && (
+                  <Pokemondetails
+                    open={openPokemonDetails}
+                    setOpen={setOpenPokemonDetails}
+                    pokemonStats={openedPokemonCardDetails}
+                  />
+                )}
+              </>
+            </div>
           </div>
-          <div className="app-container-findby-filter">
-            {isDesktop ? (
-              <Filter></Filter>
-            ) : (
-              <ModalForFiltering></ModalForFiltering>
-            )}
-          </div>
-        </div>
-        <div className="pokemon-container">
-          <div className="all-container">
-            <>
-              {filteredPokemonList.length !== 0
-                ? filteredPokemonList.map((pokemonStats, index) => (
-                    <PokemonCard
-                      pokemonStats={pokemonStats}
-                      onCardClick={onCardClick}
-                      key={pokemonStats.name}
-                      id={pokemonStats.id}
-                      disableClick={false}
-                      image={
-                        pokemonStats.sprites.other.dream_world.front_default
-                      }
-                      name={pokemonStats.name}
-                      types={pokemonStats.types}
-                      type={pokemonStats.types[0].type.name}
-                    />
-                  ))
-                : pokemonList.map((pokemonStats, index) => (
-                    <PokemonCard
-                      pokemonStats={pokemonStats}
-                      onCardClick={onCardClick}
-                      disableClick={false}
-                      key={pokemonStats.name}
-                      id={pokemonStats.id}
-                      image={
-                        pokemonStats.sprites.other.dream_world.front_default
-                      }
-                      name={pokemonStats.name}
-                      types={pokemonStats.types}
-                      type={pokemonStats.types[0].type.name}
-                    />
-                  ))}
-              {openPokemonDetails && openedPokemonCardDetails && (
-                <Pokemondetails
-                  open={openPokemonDetails}
-                  setOpen={setOpenPokemonDetails}
-                  pokemonStats={openedPokemonCardDetails}
-                />
-              )}
-            </>
-          </div>
-        </div>
-      </div>
+        </Box>
+      </Box>
     </appContext.Provider>
   );
 }

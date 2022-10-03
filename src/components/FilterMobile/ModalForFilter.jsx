@@ -8,6 +8,7 @@ import { makeStyles } from "@material-ui/core/styles";
 import "./Modal.css";
 import CheckBox from "../checkbox/CheckBox";
 import AccordionComponent from "../accordion/AccordionComponent";
+import TuneIcon from '@material-ui/icons/Tune';
 // import CloseIcon from "@material-ui/icons/Close";
 // import filterIcon from "../icons/filterIcon";
 //pokedex\src\icons\filterIcon.png
@@ -28,9 +29,9 @@ export default function ModalForFilter() {
 
   return (
     <div>
-      <Button onClick={() => setOpen(true)}>
-        <img className="filter-icon" src="icons/filterIcon.png"></img>
-      </Button>
+      <TuneIcon className="filter-icon" onClick={() => setOpen(true)}>
+
+      </TuneIcon>
       <Dialog
         className={classes.root}
         open={open}
