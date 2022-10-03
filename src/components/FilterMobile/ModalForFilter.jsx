@@ -6,6 +6,7 @@ import DialogContentText from "@material-ui/core/DialogContentText";
 import IconButton from "@material-ui/core/IconButton";
 import { makeStyles } from "@material-ui/core/styles";
 import "./Modal.css";
+import CheckBox from "../checkbox/CheckBox";
 import AccordionComponent from "../accordion/AccordionComponent";
 // import CloseIcon from "@material-ui/icons/Close";
 // import filterIcon from "../icons/filterIcon";
@@ -14,7 +15,7 @@ import Typography from "@material-ui/core/Typography";
 import Button from "@material-ui/core/Button";
 import Grid from "@material-ui/core/Grid";
 // import HighlightOffIcon from "@mui/icons-material/HighlightOff";
-import FilterByType from "../Filter/FilterByType";
+import FilterByType from "../FilterDesktop/FilterByType";
 const useStyles = makeStyles((theme) => {
   const appbarHeight = 100;
   return {
@@ -46,7 +47,7 @@ export default function ModalForFilter() {
         <DialogContent>
           <AccordionComponent
             id="Type"
-            FilterByType={<FilterByType />}
+            FilterByType={<CheckBox />}
             filterType={"Type"}
           />
           <AccordionComponent id="Gender" filterType={"Gender"} />

@@ -1,9 +1,9 @@
 import PokemonCard from "./components/PokemonCard";
-import ModalForFiltering from "./components/Modal/ModalForFilter";
+import ModalForFiltering from "./components/FilterMobile/ModalForFilter";
 import React, { useRef, useEffect, useState } from "react";
-import Filter from "./components/Filter/Filter";
-import Pokemondetails from "./components/Modal/Pokemondetails";
-import CheckBox from "./components/CheckBox";
+import Filter from "./components/FilterDesktop/Filter";
+import Pokemondetails from "./components/FilterMobile/Pokemondetails";
+import CheckBox from "./components/checkbox/CheckBox";
 export const appContext = React.createContext();
 //lazy loading, error handling
 const config = {
@@ -48,7 +48,7 @@ function App() {
     "steel",
     "water",
   ];
-  const [isDesktop, setDesktop] = useState(window.innerWidth > 650);
+  const [isDesktop, setDesktop] = useState(window.innerWidth > 1024);
 
   const updateMedia = () => {
     setDesktop(window.innerWidth > 1200);
@@ -235,7 +235,6 @@ function App() {
             </>
           </div>
         </div>
-        <CheckBox />
       </div>
     </appContext.Provider>
   );

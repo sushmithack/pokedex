@@ -1,0 +1,18 @@
+.checkbox-container{
+    display: flex;
+    flex-direction: row;
+flex-wrap: wrap;
+    justify-content: space-between;
+}
+.checkbox-item{
+   width: 50% ;
+  
+}
+
+.Checkbox-input{
+    display:inline;
+    
+}
+#Checkbox-input:checked{
+    background-color: aqua;
+}

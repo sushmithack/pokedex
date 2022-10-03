@@ -3,5 +3,6 @@
     .filter-on-largescreen{
         display: flex !important ;
         background: #C9DDE2;       
+        justify-content: space-between;
     }
 }

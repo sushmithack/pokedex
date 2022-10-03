@@ -1,6 +1,6 @@
 import { useState, useEffect, useContext } from "react";
-import { appContext } from "../App";
-
+import { appContext } from "../../App";
+import "./CheckBox.css";
 const allPokemonTypes = [
   "all types",
   "grass",
@@ -69,23 +69,22 @@ export default function CheckBox() {
   };
 
   return (
-    <form className="App">
-      <h3>Select Toppings</h3>
-      <div className="toppings-list">
-        {objArr.map((ele, i) => {
-          return (
-            <label key={ele} label={ele}>
-              <input
-                type="Checkbox"
-                checked={state[ele]}
-                onChange={handleChange}
-                name={ele}
-              />
-              {ele}
-            </label>
-          );
-        })}
-      </div>
+    <form className="checkbox-container">
+      {objArr.map((ele, i) => {
+        return (
+          <label key={ele} label={ele} className="checkbox-item">
+            <input
+              className="Checkbox-input"
+              id="Checkbox-input"
+              type="Checkbox"
+              checked={state[ele]}
+              onChange={handleChange}
+              name={ele}
+            />
+            {ele}
+          </label>
+        );
+      })}
     </form>
   );
 }
