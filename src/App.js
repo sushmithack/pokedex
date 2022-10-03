@@ -3,7 +3,7 @@ import ModalForFiltering from "./components/FilterMobile/ModalForFilter";
 import React, { useRef, useEffect, useState } from "react";
 import Filter from "./components/FilterDesktop/Filter";
 import Pokemondetails from "./components/FilterMobile/Pokemondetails";
-import CheckBox from "./components/checkbox/CheckBox";
+
 export const appContext = React.createContext();
 //lazy loading, error handling
 const config = {
