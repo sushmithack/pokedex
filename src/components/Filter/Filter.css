@@ -1,0 +1,7 @@
+
+@media screen and (min-width: 1200px) {
+    .filter-on-largescreen{
+        display: flex !important ;
+        background: #C9DDE2;       
+    }
+}

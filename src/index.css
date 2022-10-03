@@ -12,41 +12,6 @@ height: 100%;
 background: #DEEDED;
 }
 
-code {
-  font-family: source-code-pro, Menlo, Monaco, Consolas, 'Courier New',
-    monospace;
-}
-.rock {
-  background-color: rgb(148, 81, 81);
-}
-.ghost {
-  background-color: rgb(247, 247, 247);
-}
-.electric {
-  background-color: rgb(255, 255, 161);
-}
-.bug {
-  background-color: #F6D6A7;
-}
-.poison {
-  background-color: #e0a7f6;
-}
-.normal {
-  background-color: #F4F4F4;
-}
-.fairy {
-  background-color: rgba(255, 192, 203, 0.863);
-}
-.fire {
-  background-color: #FBE3DF;
-}
-.grass {
-  background-color:#E2F9E1;
-}
-.water {
-  background-color:#E0F1FD;
-}
-
 
 .app-container {
 width: 100%;
@@ -102,11 +67,14 @@ line-height: 19px;
   }
   .app-container-header-line{
   
-    margin-bottom: 0.1rem;
+    margin-bottom: 1rem;
     /* //width: 100%;
     //border: 1px solid #5D5F7E; */
     
+    width: 90%;
+    border-top: 1px solid #5D5F7E;
     }
+   
 .pokemon-container {
 
   width: 100%;
@@ -174,16 +142,11 @@ h3 {
   cursor: pointer;
   background-color: rgba(0, 0, 0, 0.185);
 }
-.load-more {
-  background: #f5f5f5 linear-gradient(#f5f5f5,#f1f1f1) repeat-x;
-  border-radius: 2px;
-  border: 1px solid #c6c6c6;
-  color: #444;
-  padding: 0.5rem 1.5rem;
-  min-width: 50%;
-  margin-top: 1rem;
+
+.app-container-findby{
+  display: flex;
 }
-.app-container-filtering{
+.app-container-findby-searching{
   display: flex;
 
   justify-content: space-around;
@@ -191,13 +154,13 @@ h3 {
   height: 2.5rem;
 }
 
-.app-container-filtering-filtericon{
+.app-container-findby-filter{
   /* background: #2E3156;
 border-radius: 8px;
 height: 100%; */
 
 }
-.app-container-filtering-input{
+.app-container-findby-searching-input{
  
   width:75%;
 
@@ -207,6 +170,7 @@ height: 100%; */
  height: 100%;
 }
 
+
 @media screen and (min-width: 1200px) {
   .app-container{
     
@@ -214,6 +178,7 @@ height: 100%; */
   .app-container-header{
 display: flex;
 flex-direction: row;
+justify-content: center;
     width: 100%;
     /* height: 95px;
     left: 28px;
@@ -225,9 +190,11 @@ flex-direction: row;
     } 
     .app-container-header-line{
   
-      margin-bottom: 0.1rem;
-      width: 10%;
+      /* margin-bottom: 0.1rem; */
+      width: 1rem;
+      height: 3rem;
       border-right: 1px solid #5D5F7E;
+      border-top: 0px;
       
       }
 
@@ -238,14 +205,31 @@ flex-direction: row;
    
       .app-container-header{
         padding-left: 15%;
+        display: flex;
       }
-
-      .app-container-filtering{
-        padding-left: 15%;
+.app-container-findby{
+  width:100%;
+ 
+}
+      .app-container-findby-searching{
+        /* padding-left: 15%; */
+        width:60%;
       }
       .app-container-header-subtitle{
         margin-left: 1rem;
         align-self: center;
       }
-
+     
+.app-container-findby-filter{
+  display: flex;
+  width:15%;
+  justify-content: space-between;
+}
+.MuiAccordionSummary-root {
+background-color: #C9DDE2 !important;
+border-radius: 8px;
+border: none;
+height: 100%;
+box-shadow: none;
+}
 }

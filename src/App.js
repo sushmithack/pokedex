@@ -1,13 +1,9 @@
 import PokemonCard from "./components/PokemonCard";
 import ModalForFiltering from "./components/Modal/ModalForFilter";
 import React, { useRef, useEffect, useState } from "react";
-import CardElement from "./components/cardElement/CardElement";
-import FilterByType from "./components/Filter/FilterByType";
+import Filter from "./components/Filter/Filter";
 import Pokemondetails from "./components/Modal/Pokemondetails";
-
-import { makeStyles } from "@material-ui/core/styles";
-import Modal from "@material-ui/core/Modal";
-import { DialogContent } from "@material-ui/core";
+import CheckBox from "./components/CheckBox";
 export const appContext = React.createContext();
 //lazy loading, error handling
 const config = {
@@ -52,6 +48,16 @@ function App() {
     "steel",
     "water",
   ];
+  const [isDesktop, setDesktop] = useState(window.innerWidth > 650);
+
+  const updateMedia = () => {
+    setDesktop(window.innerWidth > 1200);
+  };
+
+  useEffect(() => {
+    window.addEventListener("resize", updateMedia);
+    return () => window.removeEventListener("resize", updateMedia);
+  }, []);
   const [pokemonList, setPokemonList] = useState([]);
   const [filteredPokemonList, setFilteredPokemonList] = useState([]);
   const [openPokemonDetails, setOpenPokemonDetails] = useState(false);
@@ -116,17 +122,24 @@ function App() {
       search(val);
     }, 300);
   };
-  function onTypesSelect(e) {
-    let filterArr = [];
-    let selectedType = e.target.value;
-    if (selectedType === "all types") {
+  function onMultipleTypeSelection(e, selectedTypes) {
+    console.log(selectedTypes.length);
+    if (selectedTypes.length === 0) {
       setFilteredPokemonList(pokemonList);
-    } else {
-      for (let i = 0; i < pokemonList.length; i++) {
-        for (let j = 0; j < pokemonList[i].types.length; j++) {
-          if (e.target.value === pokemonList[i].types[j].type.name) {
-            filterArr.push(pokemonList[i]);
-          }
+    }
+
+    console.log(selectedTypes);
+    selectedTypes.forEach((type) => {
+      onTypesSelect(e, type);
+    });
+  }
+  function onTypesSelect(e, type) {
+    let filterArr = [];
+
+    for (let i = 0; i < pokemonList.length; i++) {
+      for (let j = 0; j < pokemonList[i].types.length; j++) {
+        if (type === pokemonList[i].types[j].type.name) {
+          filterArr.push(pokemonList[i]);
         }
       }
     }
@@ -138,21 +151,7 @@ function App() {
     setOpenPokemonDetails(true);
     setOpenedPokemonCardDetails(pokemonStats);
   }
-  function getPokemonCard(pokemonStats, index) {
-    return (
-      <PokemonCard
-        pokemonStats={pokemonStats}
-        onCardClick={onCardClick}
-        key={pokemonStats.name}
-        disableClick={false}
-        id={pokemonStats.id}
-        image={pokemonStats.sprites.other.dream_world.front_default}
-        name={pokemonStats.name}
-        types={pokemonStats.types}
-        type={pokemonStats.types[0].type.name}
-      />
-    );
-  }
+
   return (
     <appContext.Provider
       value={{
@@ -164,30 +163,34 @@ function App() {
         openedPokemonCardDetails,
         openPokemonDetails,
         setOpenPokemonDetails,
+        onMultipleTypeSelection,
       }}
     >
       <div className="app-container">
         <div className="app-container-header">
-          <div className="app-container-header-line">
-            <h1 className="app-container-header-title">Pokédex</h1>
-          </div>
+          <h1 className="app-container-header-title">Pokédex</h1>
+          <div className="app-container-header-line"></div>
           <h4 className="app-container-header-subtitle">
             Search for any pokemon that exists on the planet
           </h4>
         </div>
-
-        <div className="app-container-filtering">
-          <input
-            placeholder="Name or Number"
-            className="app-container-filtering-input"
-            type="text"
-            onChange={(e) => handleChange(e)}
-          />
-          <div className="app-container-filtering-filtericon">
-            <ModalForFiltering></ModalForFiltering>
+        <div className="app-container-findby">
+          <div className="app-container-findby-searching">
+            <input
+              placeholder="Name or Number"
+              className="app-container-findby-searching-input"
+              type="text"
+              onChange={(e) => handleChange(e)}
+            />
+          </div>
+          <div className="app-container-findby-filter">
+            {isDesktop ? (
+              <Filter></Filter>
+            ) : (
+              <ModalForFiltering></ModalForFiltering>
+            )}
           </div>
         </div>
-
         <div className="pokemon-container">
           <div className="all-container">
             <>
@@ -232,6 +235,7 @@ function App() {
             </>
           </div>
         </div>
+        <CheckBox />
       </div>
     </appContext.Provider>
   );
