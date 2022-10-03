@@ -9,13 +9,13 @@ body {
 width: 100%;
 height: 100%;
 
-background: #DEEDED;
+background: #deeded;
 }
 
 
 .app-container {
 width: 100%;
-background: #DEEDED; 
+background: #deeded; 
 display: flex;
   flex-direction: column;
   align-items: center;
@@ -45,18 +45,18 @@ display: flex;
   margin-bottom: 0.1rem;
   font-family: 'Roboto';
   font-style: normal;
-  font-weight: 700;
-  font-size: 30px;
+  font-weight: bolder !important;
+  font-size: 2.4rem;
   line-height: 35px;
   letter-spacing: 0.06em;
   
-  color: #2E3156;
+  color: #2e3156;
 }
 .app-container-header-subtitle{
 width: 100%;
 height: 1rem;
 margin: 0.1rem;
-color: #5D5F7E;
+color: #2e3156;
 
 font-family: 'Roboto';
 font-style: normal;
@@ -64,6 +64,22 @@ font-weight: 500;
 font-size: 16px;
 line-height: 19px;
 
+  }
+
+  .pokedexTitle-box{
+    border-bottom: 1px solid #2e3156;
+  }
+  .pokedexTitle{
+    color:#2e3156;
+    letter-spacing: 1px;
+    font-weight: bolder !important;
+  }
+  .pokedexSubtext{
+    font-size: 1rem !important;
+    color:#2e3156;
+    letter-spacing: 1px;
+    margin-top: 0.5rem !important;
+    line-height: 1rem !important;
   }
   .app-container-header-line{
   
@@ -87,8 +103,9 @@ margin-top: 1rem;
 }
 .filter-icon{
   object-fit: fill;
-  width: 3rem;
-  height: 3rem;
+  width: 3rem !important;
+  height: 3.3rem !important;
+  background-color: #2e3156;
 }
 .all-container {
   display: flex;

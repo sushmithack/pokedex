@@ -1,13 +1,12 @@
 import { makeStyles } from "@material-ui/core/styles";
-import React, { Children } from "react";
+import React from "react";
 import Accordion from "@material-ui/core/Accordion";
 import AccordionSummary from "@material-ui/core/AccordionSummary";
 import AccordionDetails from "@material-ui/core/AccordionDetails";
 import Typography from "@material-ui/core/Typography";
 import ExpandMoreIcon from "@material-ui/icons/ExpandMore";
-// import { AddCircleOutlineIcon } from "@material-ui/icons";
-// import AddCircleOutlineIcon from "@material-ui/icons/AddCircleOutlineIcon";
 import "./AccordionComponent.css";
+import Box from '@material-ui/core/Box';
 
 const useStyles = makeStyles((theme) => ({
   root: {
@@ -30,10 +29,12 @@ export default function AccordionComponent({ FilterByType, filterType, id }) {
           id={`${id}-content`}
         >
           <Typography className={classes.heading}>
-            <span>
+          <Box display="flex" flexDirection="row" alignItems="stretch" justifyContent="space-between" padding={1}>
+            <span >
               {filterType}
-              {`(normal+5More)`}
             </span>
+            <span>{`(normal+5More)`}</span>
+          </Box>
           </Typography>
         </AccordionSummary>
         <AccordionDetails> {FilterByType}</AccordionDetails>
