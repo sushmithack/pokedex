@@ -1,14 +1,11 @@
 .checkbox-container{
     display: flex;
     flex-direction: row;
-    flex-wrap: wrap;
+flex-wrap: wrap;
     justify-content: space-between;
-    height: 200px;
-    overflow-y: scroll;
-    position: relative;
 }
 .checkbox-item{
-   width: 100% ;
+   width: 50% ;
   
 }
 

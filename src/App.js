@@ -28,6 +28,7 @@ const filterOptionTypes = [
     isDisabled: true,
   },
 ];
+
 function App() {
   let timer;
 
@@ -53,7 +54,7 @@ function App() {
     "water",
   ];
   const [isDesktop, setDesktop] = useState(window.innerWidth > 1024);
-
+  const [selectedFilter, setSelectedFilter] = useState([]);
   const updateMedia = () => {
     setDesktop(window.innerWidth > 1200);
   };
@@ -154,6 +155,7 @@ function App() {
 
     setFilteredPokemonList(filterArr);
   }
+
   function onCardClick(e, pokemonStats) {
     console.log(pokemonStats);
     setOpenPokemonDetails(true);
@@ -214,13 +216,25 @@ function App() {
           alignItems="stretch"
           justifyContent="space-between"
         >
-          <TextField
-            onChange={(e) => handleChange(e)}
-            style={{ color: "#2e3156" }}
-            id="outlined-basic"
-            label="Name or Number"
-            variant="outlined"
-          />
+          <Box
+            display="flex"
+            paddingRight={3}
+            flexDirection="column"
+            alignItems="stretch"
+            style={{ color: "#2e3156", width: "98%" }}
+          >
+            <Typography variant="subtitle1" className="searchByText">
+              Search By
+            </Typography>
+            <TextField
+              onChange={(e) => handleChange(e)}
+              style={{ color: "#2e3156", width: "100%" }}
+              id="outlined-basic"
+              label="Name or Number"
+              variant="outlined"
+            />
+          </Box>
+
           {isDesktop ? (
             <Filter></Filter>
           ) : (

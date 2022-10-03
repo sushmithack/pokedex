@@ -15,11 +15,14 @@ const useStyles = makeStyles((theme) => ({
   heading: {
     fontSize: theme.typography.pxToRem(15),
     fontWeight: theme.typography.fontWeightRegular,
+    paddingTop:'5px',
+    paddingBottom:'5px',
   },
 }));
 
 export default function AccordionComponent({ FilterByType, filterType, id }) {
   const classes = useStyles();
+  
   return (
     <div className={classes.root}>
       <Accordion disabled={false}>
@@ -29,12 +32,8 @@ export default function AccordionComponent({ FilterByType, filterType, id }) {
           id={`${id}-content`}
         >
           <Typography className={classes.heading}>
-          <Box display="flex" flexDirection="row" alignItems="stretch" justifyContent="space-between" padding={1}>
-            <span >
-              {filterType}
-            </span>
-            <span>{`(normal+5More)`}</span>
-          </Box>
+            <span style={{padding:'90px !important',fontSize:'0.8rem'}}>{id}</span>
+          
           </Typography>
         </AccordionSummary>
         <AccordionDetails> {FilterByType}</AccordionDetails>
